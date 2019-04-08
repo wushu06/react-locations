@@ -1,0 +1,37 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+
+try {
+    $dbh = new PDO('mysql:host=localhost;dbname=J1', 'root', 'root');
+
+    $stmt = $dbh->prepare("
+
+        SELECT * FROM j1_document WHERE category_id = 5 LIMIT 200;
+      
+
+      ");
+
+
+
+
+    $stmt->execute();
+
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $dbh = null;
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}
+
+
+echo json_encode($data) ;
+
+
+
+
+
+
+
+?>
+
