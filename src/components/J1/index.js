@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom'
 import Header from '../../containers/Header';
 import {Button, AppBar, Fab, Icon,Divider, Toolbar,Select, Input,InputLabel , MenuItem, Checkbox,ListItemText,Snackbar,FormControlLabel, ListItem, Badge, List, Typography,CircularProgress, IconButton, InputBase, Grid} from '@material-ui/core'
@@ -13,7 +14,7 @@ import ArrowBack from '@material-ui/icons/ChevronRight'
 import ArrowForward from '@material-ui/icons/ChevronLeft'
 import Spinner from '../../containers/UI/Spinner'
 import Single from './Single';
-import Wishlist from './Wishlist';
+import Wishlist from './partials/Wishlist';
 import axios from 'axios';
 import $ from 'jquery'
 import {TweenMax} from "gsap/TweenMax";
@@ -24,16 +25,26 @@ import  { easing, tween } from  'popmotion'
 import posed from "react-pose";
 import Cookie from '../../lib/Cookie'
 import Slider from "react-slick";
-import MapJ1 from './MapJ1';
-import DisplayResult from './displayResult';
-import AutoComplete from '../../lib/AutoComplete';
+import MapJ1 from './partials/MapJ1';
+import DisplayResult from './partials/displayResult';
+import AutoCompleteDiaplay from './partials/AutoCompleteDisplay';
 import SearchInit from '../../lib/SearchInit'
+import Sidebar from './partials/Sidebar';
+import AutoComplete from '../../lib/AutoComplete'
 
-let searchInit = new SearchInit();
+
+
+
+
+const searchInit = new SearchInit();
+const autoCompleteLib = new AutoComplete();
+const cookie = new Cookie();
+let currentFocus = -1;
 let resultTotal;
-let cookie = new Cookie();
-
 let once = true;
+let div = '';
+let num = 6;
+
 const styles = theme => ({
     root: {
         width: '100%',
@@ -100,9 +111,7 @@ const styles = theme => ({
         },
     },
 });
-let div = '';
 
-let num = 6;
 
 
 const Div = posed.div({
@@ -142,7 +151,7 @@ const ShowList = posed.div({
         transition: (props) => tween({ ...props, duration: 400 })
     }
 });
-var currentFocus = 0;
+
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -164,6 +173,7 @@ class SearchV3 extends React.Component {
         search: '',
         result: [],
         dupCheck: [],
+        single: '',
         resultAutoComplete: [],
         filter: [],
         filterResult: '',
@@ -182,8 +192,6 @@ class SearchV3 extends React.Component {
         wishListId: '',
         wishListIdPath: '',
         showList:false,
-        wishListArray: [],
-        update: '',
         clicking: false,
         cliked1: false,
         oldSearch: [],
@@ -191,32 +199,20 @@ class SearchV3 extends React.Component {
         searchAll: false,
         length: 21,
         sort: false,
-        showSnackBar: false,
-        zoom: 6
+        zoom: 6,
+        dataSearch: ''
     }
+
     componentWillMount(){
         this.props.getResults();
     }
     componentDidUpdate(){
-        let self = this
-        if(once) {
-            (this.props.result).then(function (value) {
-                self.setState({
-                    loading: false,
-                    locations: value[0].data,
-                    categories: value[1].data,
-                })
-                once = false;
-            });
-        }
+
     }
 
     componentDidMount() {
 
         setTimeout(console.log.bind(console, "%c Collective Location by The Bigger Boat ⚓️ %c", "background: #f50057;color:#fff;padding:5px;border-radius: 5px;line-height: 26px;", ""));
-        this.startTime = Date.now();
-        let _self = this
-        // checking if there is a cookie or not to show the Heart icon
         let wishListCookie= cookie.getCookie("wishListCookie");
         if (wishListCookie !== "") {
             this.props.setWishList(JSON.parse(wishListCookie))
@@ -224,25 +220,52 @@ class SearchV3 extends React.Component {
         }
 
 
-        $(document).on('click', '.add_to', function () {
-            TweenMax.to($(this).parents('.result_list'), 1, {
-                border: '1px solid #f50057',
+        document.getElementById('myInput').addEventListener("keydown", this.handleKeyDown )
+        document.addEventListener("click", this.closeAllLists.bind((this)));
+        this.startTime = Date.now();
+        let _self = this
+        let searchURL = "http://phpstack-214959-744649.cloudwaysapps.com/jsonv2.php";
+        let categories = "http://phpstack-214959-744649.cloudwaysapps.com/categoyJson.php";
+        document.addEventListener('click', this.handleClickOutside, true);
+        let self = this;
 
+
+      (this.props.getResults().payload.result).then(function (value) {
+            self.setState({
+                loading: false,
+                locations: value[0].data,
+                categories: value[1].data,
+            })
+        });
+
+
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('click', this.handleClickOutside, true);
+    }
+
+    handleClickOutside = event => {
+
+
+        if (this.node && this.node.contains(event.target)) {
+            return;
+        }else{
+            this.setState({
+                showList: false
             });
-        })
-
-
-
+        }
     }
 
-    componentWillUpdate(){
-        this.endTime = Date.now();
-    }
+
 
     handleChange = event => {
-        // this.triggerAxios()
         this.setState({search: event.target.value})
-        this.setState({single: ''})
+        this.setState({
+            single: '',
+            resultAutoComplete: autoCompleteLib.searchAutoComplete(this.state.search, this.state.categories).filter,
+            filter: autoCompleteLib.searchAutoComplete(this.state.search,this.state.categories).filter
+        })
 
     }
 
@@ -257,33 +280,39 @@ class SearchV3 extends React.Component {
 
     // handle the search form submit
     handleSubmit = (event) => {
+
         event.preventDefault()
-        this.manualSearch()
+        if(this.state.searchAll){
+            this.manualSearch();
+            return;
+        }
+        if(this.state.search.length < 1 || !this.state.dataSearch){
+            return;
+        }
+
+        let res = this.state.dataSearch
+        let pair = {
+            filter: this.state.dataFilter,
+            name: this.state.dataSearch
+        }
+        this.manualSearchAutComplete( res, pair, this.state.searchAll, event);
+
     }
 
     // handle the manual search if the option for it is ticked
     manualSearch = () => {
-        this.startTime = Date.now();
-        num = 6;
-        this.state.search.length > 1 &&
-        this.setState({loading: true, numberOfResult: ''},()=>{
-            let res = searchInit.searchTerm(this.state.search,'',this.state.locations,this.state.searchAll, this.state.exclusive, this.state.result, this.state.dupCheck).result
-            if (res.length > 0) {
-                this.setState({loading: false, single: '', result: res,  noResult: false,  showMe: true, sort: false})
-            } else {
-                this.setState({loading: false, single: '', result: [],  noResult: true,numberOfResult: '', showMe: true, sort: false});
-            }
-        })
-
+        let pair = {
+            filter: this.state.search,
+            name: this.state.search
+        }
+        this.manualSearchAutComplete( this.state.search, pair,this.state.searchAll, null);
     }
 
-    manualSearchAutComplete = ( res, pair, e) => {
+    manualSearchAutComplete = ( res, pair,searchAll = false, e) => {
 
-        this.startTime = Date.now();
-        num = 6;
         this.setState({loading: true,   showFilter: true},()=>{
-           // let result = this.searchTerm(this.state.search, res)
-            let getResult = searchInit.searchTerm(this.state.search, res,this.state.locations,this.state.searchAll, this.state.exclusive, this.state.result, this.state.dupCheck)
+            // let result = this.searchTerm(this.state.search, res)
+            let getResult = searchInit.searchTerm(this.state.search, res,this.state.locations,searchAll, this.state.exclusive, this.state.result, this.state.dupCheck)
             let result = getResult.result
 
 
@@ -318,8 +347,9 @@ class SearchV3 extends React.Component {
 
     }
 
+
     deleteSearchTerm = (i, filter) => {
-        //this.searchAutoComplete(filter)
+       // this.searchAutoComplete(filter)
         let oldSearch = this.state.oldSearch
         oldSearch.length > 0 && oldSearch.splice(i,1);
         let result = []
@@ -344,9 +374,8 @@ class SearchV3 extends React.Component {
         })
     }
 
-    showMore = () => {
-        return this.setState({showMe: false})
-    }
+
+
 
     showWishlist = () => {
         return this.setState(prevState => ({
@@ -354,42 +383,68 @@ class SearchV3 extends React.Component {
         }));
     }
 
-
     loadSingle = (id, path) => {
         return this.setState({single: id,showMe:false})
     }
 
-    handleCheckChange = name => event => {
-        this.setState({[name]: event.target.checked});
-    };
+    /*
+     * add active class
+     */
 
-    displayFilter = () => {
+    handleKeyDown = (e) => {
 
-        return this.state.showFilter && this.state.filter.map((res, i)=> {
-            let pair = {
-                filter: res.filter,
-                name: res.name
+
+            let x = document.getElementById("Input");
+            if (x) x = x.querySelectorAll(".autoComplete_child");
+
+            if (e.keyCode == 40) {
+                currentFocus++;
+                this.addActive(x);
+            } else if (e.keyCode == 38) {
+                currentFocus--;
+                this.addActive(x);
             }
 
-            return(
-                <div key={i} style={{width: '100%'}} className={this.isObjectContains(this.state.oldSearch,res.filter )}>
-                    <ListItem button className="input display_filter" >
-                        <ListItemText data-tag={res} className="autoComplete_item" inset primary={res.name +' ('+res.count+')'} secondary={res.filter} onClick={this.manualSearchAutComplete.bind(null, res.filter, pair)}/>
 
-                    </ListItem>
-                    {
-                        (res.index >= 21 &&  !this.state.hideFilterMore  ) &&  ( <ListItem button className="input see_more_filter">
-                            <ListItemText data-tag={res} className="autoComplete_item" inset primary={'See ' + this.state.filterResult+' more'} onClick={this.increaseFilter2}/>
-                        </ListItem>)
-                    }
-                </div>
-
-            )
+    }
+   addActive = (x) => {
+        if (!x) return false;
+        this.removeActive(x);
+        if (currentFocus >= x.length) currentFocus = 0;
+        if (currentFocus < 0) currentFocus = (x.length - 1);
+        x[currentFocus].classList.add("autocomplete-active");
+        let dataSearch = $(x[currentFocus]).find('.input').data('search');
+        let dataFilter = $(x[currentFocus]).find('.input').data('filter');
+        this.setState({ //search:document.querySelectorAll('.autocomplete-active')[0].childNodes[0].dataset.search,
+                        dataSearch:dataSearch,
+                        dataFilter: dataFilter
         })
+
     }
-    isObjectContains = (obj, val) => {
-        return obj.map(f => { if(f.filter === val){return ('disabled filter_btn')}else{return ('')}})
+   removeActive = (x) => {
+        for (var i = 0; i < x.length; i++) {
+            x[i].classList.remove("autocomplete-active");
+        }
+   }
+
+    closeAllLists = (elmnt) => {
+        if(this.state.searchAll){
+            return;
+        }
+        if(elmnt.path[2].tagName !== 'FORM' && !elmnt.target.className.includes('see_more')  ){
+            this.setState({
+                search: ''
+            })
+        }
+
     }
+
+    handleCheckChange = name => event => {
+        console.log('clik');
+        console.log(event.target.checked);
+        this.setState({[name]: !event.target.checked});
+    };
+
     handleMouseEnter = (lat, lng,name,img, e) => {
         let cord = []
         cord.push({
@@ -398,36 +453,26 @@ class SearchV3 extends React.Component {
             lng: lng,
             img: img
         })
-      this.setState({
-          cord,
-          zoom: 16
-      })
+        this.setState({
+            cord,
+            zoom: 16
+        })
     }
 
 
-    sortArray = (arr, key, num = true ) => {
-
-        if(num){
-            arr.map(() => {
-                arr.sort(function(a, b){
-                    //return  a.key - b.key ;
-                    return  a[key] - b[key] ;
-                });
-            });
-        }else{
-            arr.sort(function(a, b) {
-                let textA = a[key].toUpperCase();
-                let textB = b[key].toUpperCase();
-                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-            });
-        }
-
-    }
+    // from child
     getResultsData = (data) => {
+
         this.setState({wishListArray:data.wishListArray, update: data.update, showSnackBar: data.showSnackBar})
 
     }
-    sortResult = () => {
+    getSingleData = (data) => {
+        return this.setState({single:data.single, showMe: data.showMe})
+    }
+    getResultTotal = (total) => {
+        return this.setState({numberOfResult: total})
+    }
+   /* sortResult = () => {
        // div = this.displayResult(this.state.result,num, this.state.typeName)
         div = <DisplayResult
                     result={this.state.result}
@@ -435,64 +480,43 @@ class SearchV3 extends React.Component {
                     select={this.state.typeName}
                     sort={this.state.sort}
                     getResultsData={this.getResultsData}
+                    getSingleData={this.getSingleData}
+                    getResultTotal={this.getResultTotal}
                 />
         this.setState(prevState => ({
             sort: !prevState.sort
         }));
 
 
-    }
+    }*/
     handleClose = () => {
         this.setState({ showSnackBar: false });
     }
-    handleTypeChange = event => {
-        div = ''
-       this.setState({ typeName: event.target.value });
+    collapse = () =>{
+        alert('blue')
+        this.setState({showList: false});
     }
 
     render() {
 
-        const {search, result, loading, single,showSnackBar,  noResult,  showList, wishListArray, resultAutoComplete, oldSearch,numberOfResult, searchAll, showFilter, cord, zoom} = this.state
+        const {search, result, loading, single,showSnackBar,exclusive,  noResult,  showList, wishListArray, resultAutoComplete, oldSearch,numberOfResult, searchAll, showFilter, cord, zoom} = this.state
         const {classes} = this.props;
-        const loadingTime =  ((this.endTime - this.startTime)/1000).toFixed(2)
+
 
         if (result.length > 0) {
+            div = <DisplayResult
+                    result={this.state.result}
 
-          // div = this.displayResult(result)
-
+                  />
         }else{
             div = ''
         }
 
-        if (!this.state.showMe) {
-            num += 6
-           // div = this.displayResult(result, num)
-            div = <DisplayResult
-                    result={this.state.result}
-                    num={num}
-                    select={this.state.typeName}
-                    sort={this.state.sort}
-                    getResultsData={this.getResultsData}
-                />
-        }
-
-        if(this.state.typeName){
-           // div = this.displayResult(this.state.result, num, this.state.typeName)
-            div = <DisplayResult
-                        result={this.state.result}
-                        num={num}
-                        select={this.state.typeName}
-                        sort={this.state.sort}
-                        getResultsData={this.getResultsData}
-                    />
-        }
         return (
             <div>
 
-                {single ? <Single id={single} token={ this.props.token} />
-                    :
                     <div className="container_wrapper">
-
+                        <Header/>
                         <AppBar position="fixed" className='search-header'>
                             <Toolbar className="toolbar">
 
@@ -502,11 +526,12 @@ class SearchV3 extends React.Component {
                                         <SearchIcon/>
                                     </div>
 
-                                    <form onSubmit={this.handleSubmit}>
+                                    <form onSubmit={ this.handleSubmit }>
                                         <InputBase
                                             placeholder="Search…"
                                             autoComplete="off"
                                             onChange={this.handleChange}
+
                                             name="search"
                                             value={this.state.search}
                                             id="myInput"
@@ -515,8 +540,7 @@ class SearchV3 extends React.Component {
                                                 input: classes.inputInput,
                                             }}
                                         />
-
-                                        <AutoComplete search={this.state.search} categories={this.state.categories} manualSearchAutComplete={this.manualSearchAutComplete} />
+                                        {!searchAll &&  <AutoCompleteDiaplay search={this.state.search} categories={this.state.categories} manualSearchAutComplete={this.manualSearchAutComplete} />}
 
                                     </form>
                                     <div className="check">
@@ -535,7 +559,8 @@ class SearchV3 extends React.Component {
                                         control={
                                             <Checkbox
                                                 checked={this.state.exclusive}
-                                                onChange={this.handleCheckChange('exclusive')}
+
+                                                onClick={this.handleCheckChange('exclusive')}
                                                 value="exclusive"
                                             />
                                         }
@@ -549,7 +574,7 @@ class SearchV3 extends React.Component {
                                         control={
                                             <Checkbox
                                                 checked={searchAll}
-                                                onChange={this.handleCheckChange('searchAll')}
+                                                onClick={this.handleCheckChange('searchAll')}
                                                 value="searchAll"
                                             />
                                         }
@@ -564,7 +589,7 @@ class SearchV3 extends React.Component {
                                         pose={this.state.clicking ? "cliked" : "uncliked"}
                                     >
                                         <Badge  badgeContent={this.props.wishList.length} color="secondary">
-                                            <Fab color="secondary" aria-label="Edit" size="small" onClick={() => this.showWishlist()}>
+                                            <Fab className="wish_btn" color="secondary" aria-label="Edit" size="small" onClick={() => this.showWishlist()}>
                                                 <Favorite/>
                                             </Fab>
                                         </Badge>
@@ -583,7 +608,7 @@ class SearchV3 extends React.Component {
 
                                 <Grid item md={12} xs={12}>
                                     <div className="old_search_wrapper">
-                                        {oldSearch && !searchAll &&
+                                        {oldSearch  &&
                                         oldSearch.map((old, i)=> (
                                             <div className="concat_search" key={i}>
                                                 <div className="old_search">
@@ -596,17 +621,12 @@ class SearchV3 extends React.Component {
                                         ))
                                         }
                                     </div>
-
-
-
                                 </Grid>
                                 <Grid item md={8} xs={8}>
                                     <div className="versions">
-                                        <span><Link to="/locations">Current version </Link></span>
-                                        <span><Link to="/searchv1">V1 </Link></span>
-                                        <span><Link to="/searchv2">V2 </Link></span>
-                                        <span><Link to="/searchv3">V3 </Link></span>
-
+                                        <span><Link to="/v1">V1 </Link></span>
+                                        <span><Link to="/v2">V2 </Link></span>
+                                        <span><Link to="/v3">V3 </Link></span>
                                     </div>
 
                                     {(showList && this.props.wishList.length > 0) ?
@@ -614,32 +634,25 @@ class SearchV3 extends React.Component {
                                             onClick={() => this.setState(prevState => ({clicking: !prevState.clicking  }))}
                                             pose={this.state.clicking2 ? "cliked1" : "uncliked2"}
                                         >
-                                            <div className="wish_container"><Wishlist array={wishListArray}  update={this.state.update}/></div>
+                                            <div ref={node =>  this.node = node } className="wish_container"><Wishlist  array={wishListArray}  update={this.state.update}/></div>
                                         </ShowList> : ''}
 
-
-                                    <List className={loading ? 'loading result' : 'result'}>
+                                    <List className={loading ? 'loading result' : 'main_wrapper'}>
                                         {noResult ? <h2></h2> : ''}
                                         {div}
                                     </List>
-
-                                    <div className="show_more">
-                                        {numberOfResult && ((numberOfResult - num)   > 0 ) ?
-                                            <Button variant="contained" color="secondary" onClick={() => this.showMore()}>See <span className="number">{(numberOfResult - num ) } </span>more </Button> : ''}
-                                    </div>
                                 </Grid>
                                 <Grid item md={4} xs={4}>
                                     <Grid container spacing={24} className="main">
-                                        <Grid item md={12} xs={12}>
-                                            <div className="google_map">
-                                                {(cord.length > 0 && oldSearch.length > 0) && <MapJ1 cord={cord} zoom={zoom} centerLat={cord[0].lat} centerLng={cord[0].lng}   /> }
-                                            </div>
-                                        </Grid>
-                                        <Grid item md={12} xs={12}>
-                                            <div className="filter_wrapper">
-                                                {(showFilter && oldSearch.length > 0) && ( <div><h2>Related</h2>{this.displayFilter()}</div>)}
-                                            </div>
-                                        </Grid>
+                                        {(showFilter && oldSearch.length > 0) &&
+                                             <Sidebar
+                                                 filter={this.state.filter}
+                                                 filterResult={this.state.filterResult}
+                                                 hideFilterMore={this.state.hideFilterMore}
+                                                 oldSearch={this.state.oldSearch}
+                                                 manualSearchAutComplete={this.manualSearchAutComplete}
+                                             />
+                                        }
                                     </Grid>
 
                                 </Grid>
@@ -656,11 +669,11 @@ class SearchV3 extends React.Component {
                             ContentProps={{
                                 'aria-describedby': 'message-id',
                             }}
-                            message={<span id="message-id">Location has been added to your wishlist</span>}
+                            message={<span id="message-id">Location has been added to your wish list</span>}
                         />
                         }
 
-                    </div>}
+                    </div>
             </div>
         )
     }

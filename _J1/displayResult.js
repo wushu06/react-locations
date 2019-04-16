@@ -4,7 +4,6 @@ import Slider from "react-slick";
 import ArrowBack from '@material-ui/icons/ChevronRight'
 import ArrowForward from '@material-ui/icons/ChevronLeft'
 import Favorite from '@material-ui/icons/Favorite';
-import SortIcon from '@material-ui/icons/SortByAlpha';
 import {setWishList, getToken} from '../../actions';
 import { connect} from 'react-redux';
 import Cookie from '../../lib/Cookie'
@@ -27,12 +26,11 @@ function SamplePrevArrow(props) {
 }
 let main;
 let cookie = new Cookie();
-let resultTotal = 0;
+let resultTotal;
 class displayResult extends React.Component {
     state = {
         single: '',
-        resultTotal: 0,
-        typeName: 'all',
+        showSingle: false
     }
 
     componentDidMount(){
@@ -41,6 +39,7 @@ class displayResult extends React.Component {
             this.props.setWishList(JSON.parse(wishListCookie))
             this.props.getToken()
         }
+
 
 
     }
@@ -70,7 +69,11 @@ class displayResult extends React.Component {
 
     }
     loadSingle = (id, path) => {
-        return this.setState({single: id,showMe:false})
+      //  return this.setState({single: id,showMe:false})
+
+        let singleData = {}
+        singleData = {single: id, showMe: false}
+       return  this.props.getSingleData( singleData);
     }
 
     resultLoop = (result, num = 6, select = 'all') => {
@@ -85,12 +88,14 @@ class displayResult extends React.Component {
             prevArrow: <SamplePrevArrow />
         };
 
+        console.log(num);
 
+        resultTotal = 0
         main =  result.length > 0  && result.map((name, i) => {
 
             if(  name[select] === '1' ) {
 
-                resultTotal = i +1
+                resultTotal += 1
 
                 while (i < num) {
 
@@ -113,7 +118,7 @@ class displayResult extends React.Component {
                                 <Button onClick={() => this.loadSingle(name.loc_id)} style={{display: 'block'}}>
                                     <img width="290" src={path2} style={{minHeight: '200'}}/>
                                 </Button>
-                                <Button onClick={() => this.loadSingle(name.loc_id)} style={{display: 'block'}}>
+                                <Button onClick={() => this.loadSingle(namenpm .loc_id)} style={{display: 'block'}}>
                                     <img width="290" src={path3} style={{minHeight: '200'}}/>
                                 </Button>
                             </Slider>
@@ -143,53 +148,19 @@ class displayResult extends React.Component {
                 }
             }
         })
-
-
+        this.props.getResultTotal(resultTotal)
         return main;
 
     }
 
-    handleTypeChange = event => {
-
-        this.setState({ typeName: event.target.value });
-    }
 
     render() {
       
         return (
             <React.Fragment>
-                {resultTotal > 0 && (<div className="result_total">
-                    <div className="sort_filter">
-                        <span>Results:<span className="fig"> { resultTotal } </span> </span>
-
-                        <InputLabel htmlFor="select-multiple">Select type</InputLabel>
-                        <Select
-                            value={this.state.typeName}
-                            onChange={this.handleTypeChange}
-                            input={<Input id="select" />}
-                        >
-                            <MenuItem value="all">
-                                {'All'}
-                            </MenuItem>
-                            <MenuItem value="commercial">
-                                {'Commercial'}
-                            </MenuItem>
-                            <MenuItem value="residential">
-                                {'Residential'}
-                            </MenuItem>
-                            <MenuItem value="production">
-                                {'Production'}
-                            </MenuItem>
-
-                        </Select>
-                    </div>
-
-
-                </div>)}
-
                 {this.state.single
                     ?
-                    <Single  token={ this.props.token} />
+                    <Single  token={this.props.token} id={this.state.single} />
                     :
                 this.props.result.length > 0  ?
                 this.resultLoop(
@@ -199,7 +170,6 @@ class displayResult extends React.Component {
                                     this.props.sort
                 ) : ''
                       }
-
             </React.Fragment>
         )
     }

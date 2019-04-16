@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="89ea18e6-24c1-4dfb-ba29-a59f7617b59f" name="Default" comment="" />
+    <list default="true" id="89ea18e6-24c1-4dfb-ba29-a59f7617b59f" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/Types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/Types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/result.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/result.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/token.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/token.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/wishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/wishlist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/scss/_general.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/scss/_general.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/AutoComplete.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/MapJ1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/SearchV1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/SearchV2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/SearchV3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/Single.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/J1/Single.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/SingleCache.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/J1/SingleCache.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/Wishlist.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/displayResult.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/J1/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/J1/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/AutoComplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/AutoComplete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/Cookie.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Cookie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/SearchInit.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/SearchInit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/result.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/result.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/token.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/token.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/wishlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/wishlist.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,42 +37,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="SearchInit.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lib/SearchInit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-300">
-              <caret line="4" column="91" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="91" />
+            <state relative-caret-position="98">
+              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AutoComplete.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lib/AutoComplete.js">
+      <file leaf-file-name="displayResult.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/J1/partials/displayResult.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cookie.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lib/Cookie.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/J1/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="175" column="5" lean-forward="true" selection-start-line="175" selection-start-column="5" selection-end-line="175" selection-end-column="24" />
+            <state relative-caret-position="-3240">
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -53,11 +58,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="displayResult.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/J1/displayResult.js">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/J1/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1707">
-              <caret line="187" column="24" selection-start-line="187" selection-start-column="24" selection-end-line="187" selection-end-column="24" />
+            <state relative-caret-position="163">
+              <caret line="305" column="35" selection-start-line="305" selection-start-column="35" selection-end-line="305" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchV2.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/J1/versions/SearchV2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="128">
+              <caret line="605" column="76" selection-start-line="605" selection-start-column="59" selection-end-line="605" selection-end-column="76" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -69,40 +86,43 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>searchAll</find>
-      <find>limit</find>
-      <find>searchAutoCompleteDisplay</find>
-      <find>resultAutoComplete</find>
-      <find>handlechange</find>
-      <find>autocomplete</find>
-      <find>manualSearchAutComplete</find>
-      <find>autcomplete</find>
-      <find>delete</find>
-      <find>oldsea</find>
-      <find>searchAutoComplete</find>
-      <find>displayFilter</find>
-      <find>showFilter</find>
-      <find>resultAutoComp</find>
-      <find>searchTerm(</find>
-      <find>searchTerm</find>
-      <find>Search</find>
-      <find>SearchInit</find>
-      <find>numberOfResult</find>
-      <find>resultTotal</find>
-      <find>cord:</find>
-      <find>cord</find>
-      <find>searchTe</find>
       <find>result</find>
-      <find>dupCheck</find>
       <find>sorticon</find>
       <find>handleTypeChange</find>
       <find>consol</find>
       <find>typeName</find>
       <find>sortres</find>
+      <find>see</find>
+      <find>'MuiTypography-root-114</find>
+      <find>categories</find>
+      <find>submit</find>
+      <find>handlesu</find>
+      <find>exclusive</find>
+      <find>excl</find>
+      <find>handlechec</find>
+      <find>input</find>
+      <find>handlech</find>
+      <find>handleche</find>
+      <find>checked</find>
+      <find>elem</find>
+      <find>autcom</find>
+      <find>handles</find>
+      <find>manualSearch</find>
+      <find>stateDupCheck</find>
+      <find>related</find>
+      <find>dupCheck</find>
+      <find>manualSearchAutComplete</find>
+      <find>handleCheckChange</find>
+      <find>sea</find>
+      <find>searchall</find>
+      <find>oldSearch</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
     </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -125,8 +145,12 @@
         <option value="$PROJECT_DIR$/src/lib/Cookie.js" />
         <option value="$PROJECT_DIR$/src/lib/search.js" />
         <option value="$PROJECT_DIR$/src/lib/AutoComplete.js" />
-        <option value="$PROJECT_DIR$/src/components/J1/index.js" />
         <option value="$PROJECT_DIR$/src/components/J1/displayResult.js" />
+        <option value="$PROJECT_DIR$/src/assets/scss/_general.scss" />
+        <option value="$PROJECT_DIR$/src/lib/SearchInit.js" />
+        <option value="$PROJECT_DIR$/src/components/J1/partials/AutoCompleteDisplay.js" />
+        <option value="$PROJECT_DIR$/src/components/J1/partials/Sidebar.js" />
+        <option value="$PROJECT_DIR$/src/components/J1/index.js" />
       </list>
     </option>
   </component>
@@ -149,12 +173,12 @@
     <option name="width" value="1366" />
     <option name="height" value="700" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -171,7 +195,14 @@
               <item name="collective" type="b2602c69:ProjectViewProjectNode" />
               <item name="collective" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="collective" type="b2602c69:ProjectViewProjectNode" />
+              <item name="collective" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="scss" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="collective" type="b2602c69:ProjectViewProjectNode" />
@@ -190,12 +221,29 @@
               <item name="collective" type="b2602c69:ProjectViewProjectNode" />
               <item name="collective" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="J1" type="462c0819:PsiDirectoryNode" />
+              <item name="partials" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="collective" type="b2602c69:ProjectViewProjectNode" />
+              <item name="collective" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="J1" type="462c0819:PsiDirectoryNode" />
+              <item name="versions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="collective" type="b2602c69:ProjectViewProjectNode" />
+              <item name="collective" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -244,17 +292,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="702" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.17513135" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25378788" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.17574692" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25757575" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32864675" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -273,6 +322,47 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/lib/SearchInit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="91" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/AutoComplete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/Cookie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/J1/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2625">
+          <caret line="175" column="5" lean-forward="true" selection-start-line="175" selection-start-column="5" selection-end-line="175" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/J1/displayResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2805">
+          <caret line="187" column="24" selection-start-line="187" selection-start-column="24" selection-end-line="187" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/J1/SingleCache.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1710">
@@ -282,25 +372,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/helper/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/J1/Sheet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/helper/index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/J1/Sheet.js" />
     <entry file="file://$PROJECT_DIR$/src/components/J1/AutoComplete.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -371,25 +444,97 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="26" selection-start-line="26" selection-end-line="33" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/J1/_index.js">
+    <entry file="file://$PROJECT_DIR$/src/components/J1/_index.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/J1/MapJ1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="936" column="107" selection-start-line="936" selection-start-column="107" selection-end-line="936" selection-end-column="107" />
+        <state relative-caret-position="-1593" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-210">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/J1/displayResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="187" column="24" selection-start-line="187" selection-start-column="24" selection-end-line="187" selection-end-column="24" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/J1/MapJ1.js">
+    <entry file="file://$PROJECT_DIR$/src/lib/Cookie.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1593">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/AutoComplete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/J1/Single.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/scss/_general.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/J1/versions/SearchV1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="424" column="21" selection-start-line="424" selection-start-column="4" selection-end-line="424" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/J1/partials/AutoCompleteDisplay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="45" column="214" selection-start-line="45" selection-start-column="214" selection-end-line="45" selection-end-column="214" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/J1/partials/Sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="22" column="229" selection-start-line="22" selection-start-column="229" selection-end-line="22" selection-end-column="229" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/J1/versions/SearchV2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="605" column="76" selection-start-line="605" selection-start-column="59" selection-end-line="605" selection-end-column="76" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -398,42 +543,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/SearchInit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-300">
-          <caret line="4" column="91" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="91" />
+        <state relative-caret-position="98">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/Cookie.js">
+    <entry file="file://$PROJECT_DIR$/src/components/J1/partials/displayResult.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/AutoComplete.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/J1/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="175" column="5" lean-forward="true" selection-start-line="175" selection-start-column="5" selection-end-line="175" selection-end-column="24" />
+        <state relative-caret-position="-3240">
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/J1/displayResult.js">
+    <entry file="file://$PROJECT_DIR$/src/components/J1/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1707">
-          <caret line="187" column="24" selection-start-line="187" selection-start-column="24" selection-end-line="187" selection-end-column="24" />
+        <state relative-caret-position="163">
+          <caret line="305" column="35" selection-start-line="305" selection-start-column="35" selection-end-line="305" selection-end-column="35" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

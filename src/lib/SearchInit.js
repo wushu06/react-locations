@@ -2,7 +2,7 @@ import React from 'react';
 
 class SearchInit  extends React.Component {
 
-    searchTerm = (val, cat = '', locations,searchAll, exclusive, stateResult, stateDupCheck) => {
+    searchTerm = (val, cat = '', locations,searchAll = false, exclusive = false, stateResult, stateDupCheck) => {
         const regex = new RegExp(cat, "i");
         const regexAll = new RegExp(val, "i");
         let result = [...stateResult]
@@ -19,6 +19,7 @@ class SearchInit  extends React.Component {
                         if (item.exclusive !== '0') {
                             result.push({
                                 id: item.id,
+
                                 loc_title: item.location_title,
                                 loc_id: item.location_id,
                                 img: item.file_name,
@@ -27,7 +28,14 @@ class SearchInit  extends React.Component {
                                 category_name: item.category_name,
                                 category_parent: item.parent_category_path_names,
                                 category_path_names: item.category_path_names,
-                                exclusive: item.exclusive
+                                exclusive: item.exclusive,
+                                postcode: item.postcode,
+                                lat: item.latitude,
+                                lng: item.longitude,
+                                commercial: item.commercial,
+                                residential: item.residential,
+                                production: item.production,
+                                all: '1'
                             })
                         }
                         //  }
@@ -90,14 +98,23 @@ class SearchInit  extends React.Component {
                             if (item.exclusive !== '0') {
                                 result.push({
                                     id: item.id,
+
                                     loc_title: item.location_title,
                                     loc_id: item.location_id,
                                     img: item.file_name,
-                                    name: item.name,
+                                    name: item.name + ' > ' + item.parent_category_path_names,
                                     mime: item.mime,
                                     category_name: item.category_name,
                                     category_parent: item.parent_category_path_names,
-                                    exclusive: item.exclusive
+                                    category_path_names: item.category_path_names,
+                                    exclusive: item.exclusive,
+                                    postcode: item.postcode,
+                                    lat: item.latitude,
+                                    lng: item.longitude,
+                                    commercial: item.commercial,
+                                    residential: item.residential,
+                                    production: item.production,
+                                    all: '1'
                                 })
                             }
                             dupCheck.push(item.location_title)
@@ -105,19 +122,29 @@ class SearchInit  extends React.Component {
 
                     }
                 } else {
+
                     if (regexAll.test(item.location_title)) {
 
                         if (dupCheck.indexOf(item.location_title) === -1) {
                             result.push({
                                 id: item.id,
+
                                 loc_title: item.location_title,
                                 loc_id: item.location_id,
                                 img: item.file_name,
-                                name: item.name,
+                                name: item.name + ' > ' + item.parent_category_path_names,
                                 mime: item.mime,
                                 category_name: item.category_name,
                                 category_parent: item.parent_category_path_names,
-                                exclusive: item.exclusive
+                                category_path_names: item.category_path_names,
+                                exclusive: item.exclusive,
+                                postcode: item.postcode,
+                                lat: item.latitude,
+                                lng: item.longitude,
+                                commercial: item.commercial,
+                                residential: item.residential,
+                                production: item.production,
+                                all: '1'
                             })
 
                             dupCheck.push(item.location_title)

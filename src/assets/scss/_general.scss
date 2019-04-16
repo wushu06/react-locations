@@ -25,6 +25,13 @@ body {
 .swip_drawer {
   z-index:99999 !important;
 }
+.see_more {
+  background: blue;
+  padding: 10px 15px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
 .active span {
    color: $main;
 }
@@ -135,6 +142,10 @@ ul {
   }
  
 }
+.main_wrapper {
+  display: flex;
+  flex-direction: column;
+}
 .result {
   display: flex;
   flex-direction: row;
@@ -144,7 +155,9 @@ ul {
   margin: auto !important;
 
   .img_wrapper {
-
+    a {
+      color: black;
+    }
   }
     button {
       padding: 0 !important;

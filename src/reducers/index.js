@@ -4,6 +4,7 @@ import {token_reducer} from './token';
 import {wish_list_reducer} from './wishlist';
 
 
+
 const rootReducer = combineReducers({
     token: token_reducer,
     setWishList: wish_list_reducer,
